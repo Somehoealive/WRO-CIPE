@@ -1,0 +1,28 @@
+void setup() {
+  // put your setup code here, to run once:
+//r vas, p parem
+
+}
+//https://docs.espressif.com/projects/esptool/en/latest/troubleshooting.html 
+//https://www.thingiverse.com/thing:3749485
+//https://wro-association.org/wp-content/uploads/WRO-2024-Future-Engineers-Self-Driving-Cars-General-Rules.pdf 
+void loop() {
+  // put your main code here, to run repeatedly:
+//  if (){ //kui näeb punast pöörab paremale
+//analogWrite(3,-150);//pöörab paremale
+//analogWrite(5,100);//sõidab otse
+//delay(200);//2 milli-sekundit
+//}
+
+//else if(){//kui näeb rohelist pöörab vasakule
+//analogWrite(3,150);//pöörab vasakule
+//analogWrite(1,100);//sõidab otse
+//delay(200);
+//}
+
+//else(){ //kui ei näe siis sõidab otse
+//analogWrite(5,100);//sõidab otse
+//analogWrite(3,0);//ei pööra
+//delay(200);
+//}
+}
