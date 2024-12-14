@@ -24,15 +24,15 @@ Serial.println(input);
 delay(1000);
  if(input ==0){
   digitalWrite(11, 0);
-digitalWrite(10,250);//sõidab otse kiirusega 250
+digitalWrite(10,255);//sõidab otse kiirusega 255 e max kiirusega
 delay(3000);//3 sekund
-for (pos = 0; pos <= 30; pos += 1)  // goes from 180 degrees to 0 degrees
-    myservo.write(pos);              // tell servo to go to position in variable 'pos'
+for (pos = 0; pos <= 30; pos += 1)  // põõrab 30 kraadi paremale
+    myservo.write(pos);              // 
     delay(15);
     digitalWrite(11, 0);
-digitalWrite(10,250);//sõidab otse kiirusega 250
+digitalWrite(10,255);//sõidab otse kiirusega 255
 delay(3000);//3 sekund
-for (pos = 0; pos <= 30; pos += 1)  // goes from 180 degrees to 0 degrees
+for (pos = 0; pos <= 30; pos += 1)  // goes from 0 degrees to 30 degrees
     myservo.write(pos);              // tell servo to go to position in variable 'pos'
     delay(15);
    
