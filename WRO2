@@ -7,46 +7,46 @@ int pos = 0;    // variable to store the servo position
 
 void setup() {
 myservo.attach(13);  // attaches the servo on pin 9 to the servo object
-pinMode(11,OUTPUT);//tagamootorid
-pinMode(10,OUTPUT);
-pinMode(4,INPUT);
-pinMode(0,INPUT);
+pinMode(11,OUTPUT);//tagamootorid tagurdab
+pinMode(10,OUTPUT);//otse
+pinMode(4,INPUT);//nupp
+pinMode(0,INPUT);//nupp
 Serial.begin(9600);
 }
 
-void loop() {
+void loop() { //kordus algab
  
-boolean input;
+boolean input;//
 
-input = digitalRead(0);
-Serial.println(input);
+input = digitalRead(0);//nupp = 0
+Serial.println(input);//prindib tulemuse 1 v 0 ja paneb üksteise alla
 delay(1000);
- if(input ==0){
-  for (pos = 0; pos <= 30; pos += 1){  // goes from 180 degrees to 0 degrees
+ if(input ==0){ //kui nupp on 0 siis hakab tegema järgnevat tegevust
+  for (pos = 0; pos <= 30; pos += 1){  // goes from 0 degrees to 30 degrees
     myservo.write(pos);              // tell servo to go to position in variable 'pos'
     delay(15);
-  digitalWrite(11, 0);
+  digitalWrite(11, 0);//ei tagurda
 digitalWrite(10,255);//sõidab otse kiirusega 100
-delay(100);//5 sekund
-  digitalWrite(11, 0);
+delay(100);//100 msek
+  digitalWrite(11, 0);//seisab
 digitalWrite(10, 0);//seisab
 delay(100);
   }
- for (pos = 50; pos >= 0; pos -= 1){  // goes from 180 degrees to 0 degrees
+ for (pos = 50; pos >= 0; pos -= 1){  // goes from 50 degrees to 0 degrees
    myservo.write(pos);              // tell servo to go to position in variable 'pos'
    delay(15);
-    digitalWrite(11, 0);
+    digitalWrite(11, 0);//ei tagurda
 digitalWrite(10,255);//sõidab otse kiirusega 100
-delay(10);//1 sekund'
-  digitalWrite(11, 0);
+delay(10);//10 msek
+  digitalWrite(11, 0);//seisab
 digitalWrite(10, 0);//seisab
 delay(100);
 }
  
 }
  }
- else(input ==1);{
-  digitalWrite(11, 0);
+ else(input ==1);{//kui nupp on 1 siis robot seisab
+  digitalWrite(11, 0);//seisab
 digitalWrite(10, 0);//seisab
 delay(100);
  }
