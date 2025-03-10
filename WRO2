@@ -11,12 +11,12 @@ pinMode(11,OUTPUT);//tagamootorid tagurdab
 pinMode(10,OUTPUT);//otse
 pinMode(4,INPUT);//nupp
 pinMode(0,INPUT);//nupp
-Serial.begin(9600);
+Serial.begin(9600);//paneb tööle jadaühenduse
 }
 
 void loop() { //kordus algab
  
-boolean input;//
+boolean input;//tekitab muutuja 0v1 nupu jaos
 
 input = digitalRead(0);//nupp = 0
 Serial.println(input);//prindib tulemuse 1 v 0 ja paneb üksteise alla
