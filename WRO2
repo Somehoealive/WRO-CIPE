@@ -1,4 +1,4 @@
-#include <Servo.h>//lisab servo teeki at servo osakõlg töötaks
+#include <Servo.h>//lisab servo teeki at servo osakülg töötaks
 
 Servo myservo;  // create servo object to control a servo
 // twelve servo objects can be created on most boards
