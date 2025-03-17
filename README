@@ -6,7 +6,7 @@ if it breaks also its small size fits snugly into the robotframe.
 For wehles in the back we use a 12V DC motor , because of its small size and speed.
 We wierd it to use a 9v batery for arduinouno and servo motor, and a baterybank for the 12V DC motor.
 
-The programm for the reare weehls is with the mane of... and it informs the motor throuh... to set a sertain speed of...
+The programm for the reare weehls is with the mane of "Sõit" and it informs the motor throuh... to set a sertain speed of 100 for
 The programm to turn the servo is ... and it sets it movment to turn one way and thenna nother.
 The combination of them with the buttun to start the programm is under the name WRO2
 WRO 1 was the programm for the trial round we had in estonia but so i cud fod it easyly i just named it WRO1.
