@@ -14,3 +14,6 @@ There the motors dont start untill the pressing of the buton (conrcted to...) an
 after that rides forward then stops, folowing that it turns back its front wheles in 20 millisekond and reapets the drive forward and stop motion.
 The reson why we dont ride and turn during the same time is because if the robot rides the servo isnt strong enouth to turn during the same time.
 
+Picktuers of the robots original design are all the fotos with .jpgand the 3D moduel for printing is under "AUTO".
+The latest wersion of the robot is Picktures ... and its a modofied wersion off he original print where we had to sole the problem of it holding itself together
+and wheles not falling off with screwes. And 
