@@ -24,7 +24,7 @@ delay(1000);
  if(input ==0){ //kui nupp on 0 siis hakab tegema järgnevat tegevust
   for (pos = 0; pos <= 30; pos += 1){  // goes from 0 degrees to 30 degrees
     myservo.write(pos);              // tell servo to go to position in variable 'pos'
-    delay(15);
+    delay(20);
   digitalWrite(11, 0);//ei tagurda
 digitalWrite(10,255);//sõidab otse kiirusega 100
 delay(100);//100 msek
@@ -34,7 +34,7 @@ delay(100);
   }
  for (pos = 50; pos >= 0; pos -= 1){  // goes from 50 degrees to 0 degrees
    myservo.write(pos);              // tell servo to go to position in variable 'pos'
-   delay(15);
+   delay(20);
     digitalWrite(11, 0);//ei tagurda
 digitalWrite(10,255);//sõidab otse kiirusega 100
 delay(10);//10 msek
