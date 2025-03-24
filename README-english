@@ -2,7 +2,7 @@ WRO robot  :D
 
 Our robot is 3D printed wirh open source desin in tingiverse. The robot uses arduino uno to controll everithing.
 A servo motor is used to controll the front wehles in turning, we have picked it because its cheap and eficient to change for a new one
-if it breaks also its small size fits snugly into the robotframe.
+if it breaks also servos small size fits betveen the front part of the robotframe so it cud turn the wehls.
 For wehles in the back we use a 12V DC motor , because of its small size and speed.
 We wierd it to use a 9v batery for arduinouno and servo motor, and a baterybank for the 12V DC motor.
 
