@@ -1,7 +1,64 @@
 #define otsp 13 //ees silmd p // int = #define
 #define otsv 12 //ees silmd v
  
+#include <Servo.h>
 
+Servo myservo;  // create servo object to control a servo
+// twelve servo objects can be created on most boards
+
+int pos = 0;    // variable to store the servo position
+
+void setup() {
+myservo.attach(13);  // attaches the servo on pin 9 to the servo object
+pinMode(11,OUTPUT);//tagamootorid
+pinMode(10,OUTPUT);
+pinMode(4,INPUT);
+pinMode(0,INPUT);
+Serial.begin(9600);
+pinMode (otsv,OUTPUT);
+pinMode (otsp,INPUT);
+}
+
+void loop() {
+ 
+boolean input;
+
+input = digitalRead(0);
+Serial.println(input);
+delay(1000);
+ if(input ==0){
+
+   if(otsp ==5){
+  for (pos = 0; pos <= 30; pos += 1){  // goes from 180 degrees to 0 degrees
+    myservo.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);
+  digitalWrite(11, 0);
+digitalWrite(10,255);//sõidab otse kiirusega 100
+delay(100);//5 sekund
+  }
+}
+ els if(otsv ==5) {
+ for (pos = 50; pos >= 0; pos -= 1){  // goes from 180 degrees to 0 degrees
+   myservo.write(pos);              // tell servo to go to position in variable 'pos'
+   delay(15);
+    digitalWrite(11, 0);
+digitalWrite(10,255);//sõidab otse kiirusega 100
+delay(10);//1 sekund'
+}
+}
+else(){
+  digitalWrite(11, 0);
+digitalWrite(10,255);//sõidab otse kiirusega 100
+delay(10);//1 sekund'
+}
+}
+ }
+ else(input ==1);{
+  digitalWrite(11, 0);
+digitalWrite(10, 0);//seisab
+delay(100);
+ }
+}
 
 void silmd(){
   long kestus, kaugus; //teeme muutujad kestus ja kaugus - long tüüpi, siis saavad olla suured numbrid
