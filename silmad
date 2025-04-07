@@ -1,0 +1,18 @@
+#define otsp 13 //ees silmd p // int = #define
+#define otsv 12 //ees silmd v
+ 
+
+
+void silmd(){
+  long kestus, kaugus; //teeme muutujad kestus ja kaugus - long tüüpi, siis saavad olla suured numbrid
+ analogWrite (otsv,LOW); //ultraheliandur on vait
+ delayMicroseconds(2); //molutab 2 mikrosekundit, et varem olnud heli saaks ära minna
+ analogWrite (otsv,HIGH); //teeb häält
+ delayMicroseconds(10); //ootab 10 mikrosekundit, et hääl jõuaks välja
+ analogWrite (otsv,LOW); //ultreheliandur jääb vait
+ kestus = pulseIn(otsp, HIGH); //ütleme, et muutuja "kestus" väärtus on see aeg kui kaua läheb aega kuni pesasse 3 tuleb järsku palju elektrit
+ kaugus = (kestus/2)/29,1; //arvutab välja kui kaugel asi on, jagab kestuse kahega - sest heli liigub edasi ja tagasi ning siis jagab selle heli kiirusega 
+ Serial.print(kaugus); //näitab jadapordi monitoris muutuja "kaugus" väärtust
+ Serial.print("\t"); //tekitab jadaporti tühiku ("\t" - on tühiku tekitamise käsk)
+ Serial.println("cm"); //kirjutab cm numbri taha ja läheb uue näiduga järgmisele reale (seda teeb "Serial.println")
+}
