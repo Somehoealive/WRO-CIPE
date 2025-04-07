@@ -1,5 +1,7 @@
-#define otsp 13 //ees silmd p // int = #define
-#define otsv 12 //ees silmd v
+#define pp 7//ees silmd p // int = #define
+#define pv  8//ees silmd v
+#define vp 5//ees silmd p // int = #define
+#define vv  6//ees silmd v
  
 #include <Servo.h>
 
@@ -15,8 +17,10 @@ pinMode(10,OUTPUT);
 pinMode(4,INPUT);
 pinMode(0,INPUT);
 Serial.begin(9600);
-pinMode (otsv,OUTPUT);
-pinMode (otsp,INPUT);
+pinMode (pv,OUTPUT);
+pinMode (pp,INPUT);
+pinMode (vv,OUTPUT);
+pinMode (vp,INPUT);
 }
 
 void loop() {
@@ -28,7 +32,31 @@ Serial.println(input);
 delay(1000);
  if(input ==0){
 
-   if(otsp ==5){
+  long kestus, kaugus; //teeme muutujad kestus ja kaugus - long tüüpi, siis saavad olla suured numbrid
+ analogWrite (pv,LOW); //ultraheliandur on vait
+ delayMicroseconds(2); //molutab 2 mikrosekundit, et varem olnud heli saaks ära minna
+ analogWrite (pv,HIGH); //teeb häält
+ delayMicroseconds(10); //ootab 10 mikrosekundit, et hääl jõuaks välja
+ analogWrite (pv,LOW); //ultreheliandur jääb vait
+ kestus = pulseIn(pp, HIGH); //ütleme, et muutuja "kestus" väärtus on see aeg kui kaua läheb aega kuni pesasse 3 tuleb järsku palju elektrit
+ kaugus = (kestus/2)/29,1; //arvutab välja kui kaugel asi on, jagab kestuse kahega - sest heli liigub edasi ja tagasi ning siis jagab selle heli kiirusega 
+ Serial.print(kaugus); //näitab jadapordi monitoris muutuja "kaugus" väärtust
+ Serial.print("\t"); //tekitab jadaporti tühiku ("\t" - on tühiku tekitamise käsk)
+ Serial.println("cm"); //kirjutab cm numbri taha ja läheb uue näiduga järgmisele reale (seda teeb "Serial.println")
+
+ long kestus, kaugus; //teeme muutujad kestus ja kaugus - long tüüpi, siis saavad olla suured numbrid
+ analogWrite (vv,LOW); //ultraheliandur on vait
+ delayMicroseconds(2); //molutab 2 mikrosekundit, et varem olnud heli saaks ära minna
+ analogWrite (vv,HIGH); //teeb häält
+ delayMicroseconds(10); //ootab 10 mikrosekundit, et hääl jõuaks välja
+ analogWrite (vv,LOW); //ultreheliandur jääb vait
+ kestus = pulseIn(vp, HIGH); //ütleme, et muutuja "kestus" väärtus on see aeg kui kaua läheb aega kuni pesasse 3 tuleb järsku palju elektrit
+ kaugus = (kestus/2)/29,1; //arvutab välja kui kaugel asi on, jagab kestuse kahega - sest heli liigub edasi ja tagasi ning siis jagab selle heli kiirusega 
+ Serial.print(kaugus); //näitab jadapordi monitoris muutuja "kaugus" väärtust
+ Serial.print("\t"); //tekitab jadaporti tühiku ("\t" - on tühiku tekitamise käsk)
+ Serial.println("cm"); //kirjutab cm numbri taha ja läheb uue näiduga järgmisele reale (seda teeb "Serial.println")
+  
+if(otsp <5){
   for (pos = 0; pos <= 30; pos += 1){  // goes from 180 degrees to 0 degrees
     myservo.write(pos);              // tell servo to go to position in variable 'pos'
     delay(15);
@@ -37,7 +65,7 @@ digitalWrite(10,255);//sõidab otse kiirusega 100
 delay(100);//5 sekund
   }
 }
- els if(otsv ==5) {
+ els if(otsv <5) {
  for (pos = 50; pos >= 0; pos -= 1){  // goes from 180 degrees to 0 degrees
    myservo.write(pos);              // tell servo to go to position in variable 'pos'
    delay(15);
@@ -60,16 +88,5 @@ delay(100);
  }
 }
 
-void silmd(){
-  long kestus, kaugus; //teeme muutujad kestus ja kaugus - long tüüpi, siis saavad olla suured numbrid
- analogWrite (otsv,LOW); //ultraheliandur on vait
- delayMicroseconds(2); //molutab 2 mikrosekundit, et varem olnud heli saaks ära minna
- analogWrite (otsv,HIGH); //teeb häält
- delayMicroseconds(10); //ootab 10 mikrosekundit, et hääl jõuaks välja
- analogWrite (otsv,LOW); //ultreheliandur jääb vait
- kestus = pulseIn(otsp, HIGH); //ütleme, et muutuja "kestus" väärtus on see aeg kui kaua läheb aega kuni pesasse 3 tuleb järsku palju elektrit
- kaugus = (kestus/2)/29,1; //arvutab välja kui kaugel asi on, jagab kestuse kahega - sest heli liigub edasi ja tagasi ning siis jagab selle heli kiirusega 
- Serial.print(kaugus); //näitab jadapordi monitoris muutuja "kaugus" väärtust
- Serial.print("\t"); //tekitab jadaporti tühiku ("\t" - on tühiku tekitamise käsk)
- Serial.println("cm"); //kirjutab cm numbri taha ja läheb uue näiduga järgmisele reale (seda teeb "Serial.println")
-}
+
+
