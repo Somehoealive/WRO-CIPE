@@ -38,8 +38,8 @@ delay(1000);
  analogWrite (pv,HIGH); //teeb häält
  delayMicroseconds(10); //ootab 10 mikrosekundit, et hääl jõuaks välja
  analogWrite (pv,LOW); //ultreheliandur jääb vait
- kestus = pulseIn(pp, HIGH); //ütleme, et muutuja "kestus" väärtus on see aeg kui kaua läheb aega kuni pesasse 3 tuleb järsku palju elektrit
- kaugus = (kestus12/2)/29,1; //arvutab välja kui kaugel asi on, jagab kestuse kahega - sest heli liigub edasi ja tagasi ning siis jagab selle heli kiirusega 
+ kestus1 = pulseIn(pp, HIGH); //ütleme, et muutuja "kestus" väärtus on see aeg kui kaua läheb aega kuni pesasse 3 tuleb järsku palju elektrit
+ kaugus1 = (kestus12/2)/29,1; //arvutab välja kui kaugel asi on, jagab kestuse kahega - sest heli liigub edasi ja tagasi ning siis jagab selle heli kiirusega 
  Serial.print(kaugus1); //näitab jadapordi monitoris muutuja "kaugus" väärtust
  Serial.print("\t"); //tekitab jadaporti tühiku ("\t" - on tühiku tekitamise käsk)
  Serial.println("cm"); //kirjutab cm numbri taha ja läheb uue näiduga järgmisele reale (seda teeb "Serial.println")
@@ -50,11 +50,11 @@ delay(1000);
  analogWrite (vv,HIGH); //teeb häält
  delayMicroseconds(10); //ootab 10 mikrosekundit, et hääl jõuaks välja
  analogWrite (vv,LOW); //ultreheliandur jääb vait
- kestus = pulseIn(vp, HIGH); //ütleme, et muutuja "kestus" väärtus on see aeg kui kaua läheb aega kuni pesasse 3 tuleb järsku palju elektrit
- kaugus = (kestus2/2)/29,1; //arvutab välja kui kaugel asi on, jagab kestuse kahega - sest heli liigub edasi ja tagasi ning siis jagab selle heli kiirusega 
- Serial.print(kaugus2); //näitab jadapordi monitoris muutuja "kaugus" väärtust
- Serial.print("\t"); //tekitab jadaporti tühiku ("\t" - on tühiku tekitamise käsk)
- Serial.println("cm"); //kirjutab cm numbri taha ja läheb uue näiduga järgmisele reale (seda teeb "Serial.println")
+ kestus2 = pulseIn(vp, HIGH); //ütleme, et muutuja "kestus" väärtus on see aeg kui kaua läheb aega kuni pesasse 3 tuleb järsku palju elektrit
+ kaugus2 = (kestus2/2)/29,1; //arvutab välja kui kaugel asi on, jagab kestuse kahega - sest heli liigub edasi ja tagasi ning siis jagab selle heli kiirusega 
+ //Serial.print(kaugus2); //näitab jadapordi monitoris muutuja "kaugus" väärtust
+// Serial.print("\t"); //tekitab jadaporti tühiku ("\t" - on tühiku tekitamise käsk)
+ //Serial.println("cm"); //kirjutab cm numbri taha ja läheb uue näiduga järgmisele reale (seda teeb "Serial.println")
   
 if(otsp <5){
   for (pos = 0; pos <= 30; pos += 1){  // goes from 180 degrees to 0 degrees
