@@ -16,21 +16,14 @@ pinMode(11,OUTPUT);//tagamootorid
 pinMode(10,OUTPUT);
 pinMode(4,INPUT);
 pinMode(0,INPUT);
-Serial.begin(9600);
 pinMode (pv,OUTPUT);
 pinMode (pp,INPUT);
 pinMode (vv,OUTPUT);
 pinMode (vp,INPUT);
+Serial.begin(9600);
 }
 
 void loop() {
- 
-boolean input;
-
-input = digitalRead(0);
-Serial.println(input);
-delay(1000);
- if(input ==0){
 
   long kestus1, kaugus1; //teeme muutujad kestus ja kaugus - long tüüpi, siis saavad olla suured numbrid
  analogWrite (pv,LOW); //ultraheliandur on vait
@@ -39,12 +32,12 @@ delay(1000);
  delayMicroseconds(10); //ootab 10 mikrosekundit, et hääl jõuaks välja
  analogWrite (pv,LOW); //ultreheliandur jääb vait
  kestus1 = pulseIn(pp, HIGH); //ütleme, et muutuja "kestus" väärtus on see aeg kui kaua läheb aega kuni pesasse 3 tuleb järsku palju elektrit
- kaugus1 = (kestus12/2)/29,1; //arvutab välja kui kaugel asi on, jagab kestuse kahega - sest heli liigub edasi ja tagasi ning siis jagab selle heli kiirusega 
+ kaugus1 = (kestus1/2)/29,1; //arvutab välja kui kaugel asi on, jagab kestuse kahega - sest heli liigub edasi ja tagasi ning siis jagab selle heli kiirusega 
  Serial.print(kaugus1); //näitab jadapordi monitoris muutuja "kaugus" väärtust
  Serial.print("\t"); //tekitab jadaporti tühiku ("\t" - on tühiku tekitamise käsk)
  Serial.println("cm"); //kirjutab cm numbri taha ja läheb uue näiduga järgmisele reale (seda teeb "Serial.println")
 
- long kaugus2; //teeme muutujad kestus ja kaugus - long tüüpi, siis saavad olla suured numbrid
+ long kestus2, kaugus2; //teeme muutujad kestus ja kaugus - long tüüpi, siis saavad olla suured numbrid
  analogWrite (vv,LOW); //ultraheliandur on vait
  delayMicroseconds(2); //molutab 2 mikrosekundit, et varem olnud heli saaks ära minna
  analogWrite (vv,HIGH); //teeb häält
@@ -56,7 +49,7 @@ delay(1000);
 // Serial.print("\t"); //tekitab jadaporti tühiku ("\t" - on tühiku tekitamise käsk)
  //Serial.println("cm"); //kirjutab cm numbri taha ja läheb uue näiduga järgmisele reale (seda teeb "Serial.println")
   
-if(otsp <5){
+if(pp <5){
   for (pos = 0; pos <= 30; pos += 1){  // goes from 180 degrees to 0 degrees
     myservo.write(pos);              // tell servo to go to position in variable 'pos'
     delay(15);
@@ -65,7 +58,7 @@ digitalWrite(10,255);//sõidab otse kiirusega 100
 delay(100);//5 sekund
   }
 }
- els if(otsv <5) {
+ else if(vp <5) {
  for (pos = 50; pos >= 0; pos -= 1){  // goes from 180 degrees to 0 degrees
    myservo.write(pos);              // tell servo to go to position in variable 'pos'
    delay(15);
@@ -74,19 +67,9 @@ digitalWrite(10,255);//sõidab otse kiirusega 100
 delay(10);//1 sekund'
 }
 }
-else(){
+else{
   digitalWrite(11, 0);
 digitalWrite(10,255);//sõidab otse kiirusega 100
 delay(10);//1 sekund'
 }
 }
- }
- else(input ==1);{
-  digitalWrite(11, 0);
-digitalWrite(10, 0);//seisab
-delay(100);
- }
-}
-
-
-
