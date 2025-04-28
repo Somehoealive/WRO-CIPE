@@ -3,6 +3,7 @@ Helo pls dont juge its my first time making somthing in Github.
 
 
 25.042025
+
 The newest programm is WRO3-silmad-07.0425 , WRO3-sõit_ja_silmad-07.04.25 and colorsens__sketch_apr27a_28_04_25 .
 Each programm has its explanations behind each line.
 Newest picktures of the robot are under Photos-WRO-auto.zip (PS- new photos may be uploded with a new name)
@@ -10,6 +11,7 @@ to the robot we have added two ultrasoniksensors, a powerbank(not in the photos)
 
 
 24.03.2025
+
 Our robot is 3D printed with open source design in Thingiverse. The robot uses Arduino UNO to control everything.
 A servo motor is used to control the front wheels in turning, we have picked it because its cheap and efficient to change for a new one if it breaks.
 Also the servos small size fits between the front part of the robots frame so it could turn the wheels.
