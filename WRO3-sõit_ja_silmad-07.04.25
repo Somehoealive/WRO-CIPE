@@ -1,0 +1,75 @@
+#define pp 7//ees silmd p 
+#define pv  8//ees silmd v
+#define vp 5//ees silmd p 
+#define vv  6//ees silmd v
+ 
+#include <Servo.h>
+
+Servo myservo;
+
+int pos = 0;    // variable salvestada servo position
+
+void setup() {
+myservo.attach(13);
+pinMode(11,OUTPUT);//tagamootorid
+pinMode(10,OUTPUT);
+pinMode(4,INPUT);
+pinMode(0,INPUT);
+pinMode (pv,OUTPUT);
+pinMode (pp,INPUT);
+pinMode (vv,OUTPUT);
+pinMode (vp,INPUT);
+Serial.begin(9600);
+}
+
+void loop() {
+
+  long kestus1, kaugus1; //teeme muutujad kestus ja kaugus - long tüüpi, siis saavad olla suured numbrid
+ analogWrite (pv,LOW); //ultraheliandur on vait
+ delayMicroseconds(2); //molutab 2 mikrosekundit, et varem olnud heli saaks ära minna
+ analogWrite (pv,HIGH); //teeb häält
+ delayMicroseconds(10); //ootab 10 mikrosekundit, et hääl jõuaks välja
+ analogWrite (pv,LOW); //ultreheliandur jääb vait
+ kestus1 = pulseIn(pp, HIGH); //ütleme, et muutuja "kestus" väärtus on see aeg kui kaua läheb aega kuni pesasse 3 tuleb järsku palju elektrit
+ kaugus1 = (kestus1/2)/29,1; //arvutab välja kui kaugel asi on, jagab kestuse kahega - sest heli liigub edasi ja tagasi ning siis jagab selle heli kiirusega 
+ Serial.print(kaugus1); //näitab jadapordi monitoris muutuja "kaugus" väärtust
+ Serial.print("\t"); //tekitab jadaporti tühiku ("\t" - on tühiku tekitamise käsk)
+ Serial.println("cm"); //kirjutab cm numbri taha ja läheb uue näiduga järgmisele reale (seda teeb "Serial.println")
+
+ long kestus2, kaugus2; //teeme muutujad kestus ja kaugus - long tüüpi, siis saavad olla suured numbrid
+ analogWrite (vv,LOW); //ultraheliandur on vait
+ delayMicroseconds(2); //molutab 2 mikrosekundit, et varem olnud heli saaks ära minna
+ analogWrite (vv,HIGH); //teeb häält
+ delayMicroseconds(10); //ootab 10 mikrosekundit, et hääl jõuaks välja
+ analogWrite (vv,LOW); //ultreheliandur jääb vait
+ kestus2 = pulseIn(vp, HIGH); //ütleme, et muutuja "kestus" väärtus on see aeg kui kaua läheb aega kuni pesasse 3 tuleb järsku palju elektrit
+ kaugus2 = (kestus2/2)/29,1; //arvutab välja kui kaugel asi on, jagab kestuse kahega - sest heli liigub edasi ja tagasi ning siis jagab selle heli kiirusega 
+ //Serial.print(kaugus2); //näitab jadapordi monitoris muutuja "kaugus" väärtust
+// Serial.print("\t"); //tekitab jadaporti tühiku ("\t" - on tühiku tekitamise käsk)
+ //Serial.println("cm"); //kirjutab cm numbri taha ja läheb uue näiduga järgmisele reale (seda teeb "Serial.println")
+  
+if(pp <5){
+  for (pos = 0; pos <= 50; pos += 1){  
+    myservo.write(pos);             
+    delay(15);
+  digitalWrite(11, 0);
+digitalWrite(10,0);
+delay(100);
+  }
+}
+ else if(vp <5) {
+ for (pos = 50; pos >= 0; pos -= 1){  
+   myservo.write(pos);              
+   delay(15);
+    digitalWrite(11, 0);
+digitalWrite(10,0);
+delay(10);
+}
+}
+else{
+  digitalWrite(11, 0);
+digitalWrite(10,0);//sõidab otse kiirusega 100
+delay(10);//1 sekund'
+}
+}
+
