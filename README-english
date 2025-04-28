@@ -2,6 +2,10 @@ WRO robot  :D
 Helo pls dont juge its my first time making somthing in Github.
 
 
+25.042025
+The newest programm is WRO3 
+
+24.03.2025
 Our robot is 3D printed with open source design in Thingiverse. The robot uses Arduino UNO to control everything.
 A servo motor is used to control the front wheels in turning, we have picked it because its cheap and efficient to change for a new one if it breaks.
 Also the servos small size fits between the front part of the robots frame so it could turn the wheels.
