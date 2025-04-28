@@ -2,7 +2,7 @@ WRO robot  :D
 Helo pls dont juge its my first time making somthing in Github.
 
 
-25.042025
+20.042025
 
 The newest programm is WRO3-silmad-07.0425 , WRO3-sõit_ja_silmad-07.04.25 and colorsens__sketch_apr27a_28_04_25 .
 Each programm has its explanations behind each line.
