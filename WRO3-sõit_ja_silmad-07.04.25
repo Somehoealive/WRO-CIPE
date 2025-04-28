@@ -1,75 +1,71 @@
-#define pp 7//ees silmd p 
-#define pv  8//ees silmd v
-#define vp 5//ees silmd p 
-#define vv  6//ees silmd v
- 
 #include <Servo.h>
 
 Servo myservo;
 
-int pos = 0;    // variable salvestada servo position
-
 void setup() {
-myservo.attach(13);
-pinMode(11,OUTPUT);//tagamootorid
-pinMode(10,OUTPUT);
-pinMode(4,INPUT);
-pinMode(0,INPUT);
-pinMode (pv,OUTPUT);
-pinMode (pp,INPUT);
-pinMode (vv,OUTPUT);
-pinMode (vp,INPUT);
-Serial.begin(9600);
+  // Ultrasonic sensor pins
+  pinMode(6, OUTPUT); // Trigger 1 (left)
+  pinMode(5, INPUT);  // Echo 1 (left)
+
+  pinMode(8, OUTPUT); // Trigger 2 (right)
+  pinMode(7, INPUT);  // Echo 2 (right)
+
+  // Servo
+  myservo.attach(3);  // Servo on pin 3
+
+  // DC motor
+  pinMode(10, OUTPUT); // Direction
+  pinMode(11, OUTPUT); // Speed (PWM)
+
+  Serial.begin(9600);
 }
 
 void loop() {
+  long kestus1, kaugus1;
+  long kestus2, kaugus2;
 
-  long kestus1, kaugus1; //teeme muutujad kestus ja kaugus - long tüüpi, siis saavad olla suured numbrid
- analogWrite (pv,LOW); //ultraheliandur on vait
- delayMicroseconds(2); //molutab 2 mikrosekundit, et varem olnud heli saaks ära minna
- analogWrite (pv,HIGH); //teeb häält
- delayMicroseconds(10); //ootab 10 mikrosekundit, et hääl jõuaks välja
- analogWrite (pv,LOW); //ultreheliandur jääb vait
- kestus1 = pulseIn(pp, HIGH); //ütleme, et muutuja "kestus" väärtus on see aeg kui kaua läheb aega kuni pesasse 3 tuleb järsku palju elektrit
- kaugus1 = (kestus1/2)/29,1; //arvutab välja kui kaugel asi on, jagab kestuse kahega - sest heli liigub edasi ja tagasi ning siis jagab selle heli kiirusega 
- Serial.print(kaugus1); //näitab jadapordi monitoris muutuja "kaugus" väärtust
- Serial.print("\t"); //tekitab jadaporti tühiku ("\t" - on tühiku tekitamise käsk)
- Serial.println("cm"); //kirjutab cm numbri taha ja läheb uue näiduga järgmisele reale (seda teeb "Serial.println")
+  // Read left sensor
+  digitalWrite(6, LOW);
+  delayMicroseconds(2);
+  digitalWrite(6, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(6, LOW);
+  kestus1 = pulseIn(5, HIGH);
+  kaugus1 = (kestus1 * 0.034) / 2;
+  Serial.print("kaugus1 (left): ");
+  Serial.println(kaugus1);
 
- long kestus2, kaugus2; //teeme muutujad kestus ja kaugus - long tüüpi, siis saavad olla suured numbrid
- analogWrite (vv,LOW); //ultraheliandur on vait
- delayMicroseconds(2); //molutab 2 mikrosekundit, et varem olnud heli saaks ära minna
- analogWrite (vv,HIGH); //teeb häält
- delayMicroseconds(10); //ootab 10 mikrosekundit, et hääl jõuaks välja
- analogWrite (vv,LOW); //ultreheliandur jääb vait
- kestus2 = pulseIn(vp, HIGH); //ütleme, et muutuja "kestus" väärtus on see aeg kui kaua läheb aega kuni pesasse 3 tuleb järsku palju elektrit
- kaugus2 = (kestus2/2)/29,1; //arvutab välja kui kaugel asi on, jagab kestuse kahega - sest heli liigub edasi ja tagasi ning siis jagab selle heli kiirusega 
- //Serial.print(kaugus2); //näitab jadapordi monitoris muutuja "kaugus" väärtust
-// Serial.print("\t"); //tekitab jadaporti tühiku ("\t" - on tühiku tekitamise käsk)
- //Serial.println("cm"); //kirjutab cm numbri taha ja läheb uue näiduga järgmisele reale (seda teeb "Serial.println")
-  
-if(pp <5){
-  for (pos = 0; pos <= 50; pos += 1){  
-    myservo.write(pos);             
-    delay(15);
-  digitalWrite(11, 0);
-digitalWrite(10,0);
-delay(100);
+  // Read right sensor
+  digitalWrite(8, LOW);
+  delayMicroseconds(2);
+  digitalWrite(8, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(8, LOW);
+  kestus2 = pulseIn(7, HIGH);
+  kaugus2 = (kestus2 * 0.034) / 2;
+  Serial.print("kaugus2 (right): ");
+  Serial.println(kaugus2);
+
+  // Reversed turning logic
+  if (kaugus1 < 20 && kaugus2 >= 20) {
+    // Left side blocked → turn left
+    myservo.write(60);
+    Serial.println("Obstacle left → turning left");
+  } 
+  else if (kaugus2 < 20 && kaugus1 >= 20) {
+    // Right side blocked → turn right
+    myservo.write(120);
+    Serial.println("Obstacle right → turning right");
+  } 
+  else {
+    // No obstacles or both blocked → go straight
+    myservo.write(90);
+    Serial.println("No close obstacle → going straight");
   }
-}
- else if(vp <5) {
- for (pos = 50; pos >= 0; pos -= 1){  
-   myservo.write(pos);              
-   delay(15);
-    digitalWrite(11, 0);
-digitalWrite(10,0);
-delay(10);
-}
-}
-else{
-  digitalWrite(11, 0);
-digitalWrite(10,0);//sõidab otse kiirusega 100
-delay(10);//1 sekund'
-}
-}
 
+  // Always drive forward slowly
+  digitalWrite(10, HIGH);     // Forward direction
+  analogWrite(11, 5);       // Slow speed (0–255)
+
+  delay(200); // Reduce delay for smoother movement
+}
