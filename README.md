@@ -3,7 +3,9 @@ Helo pls dont juge its my first time making somthing in Github.
 
 
 25.042025
-The newest programm is WRO3 
+The newest programm is WRO3-silmad-07.0425 , WRO3-sõit_ja_silmad-07.04.25 and colorsens__sketch_apr27a_28_04_25
+Newest picktures of the robot are under Photos-WRO-auto.zip (PS- new photos may be uploded with a new name)
+
 
 24.03.2025
 Our robot is 3D printed with open source design in Thingiverse. The robot uses Arduino UNO to control everything.
