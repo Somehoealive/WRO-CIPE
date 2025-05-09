@@ -1,0 +1,148 @@
+#include <Servo.h>
+
+Servo myservo;
+
+bool soidab = false;
+bool nupp = false;
+
+int ringid = 0;
+
+void setup() {
+
+  pinMode (2, INPUT_PULLUP);
+
+  // Ultrasonic sensor pins
+  pinMode(6, OUTPUT); // Trigger 1 (left)
+  pinMode(5, INPUT);  // Echo 1 (left)
+
+  pinMode(8, OUTPUT); // Trigger 2 (right)
+  pinMode(7, INPUT);  // Echo 2 (right)
+
+  // Servo
+  myservo.attach(3);  // Servo on pin 3
+
+  // DC motor
+  pinMode(10, OUTPUT); // Direction
+  pinMode(11, OUTPUT); // Speed (PWM)
+
+  Serial.begin(9600);
+}
+
+
+
+
+void loop() {
+
+
+
+  const int blackThreshold = 300;
+
+
+  bool nuppseis = digitalRead(2);
+
+  if (!nupp && nuppseis == LOW){
+    soidab = true;
+  }
+ 
+  nupp = (nuppseis == LOW);
+
+  if (soidab){
+  long kestus1, kaugus1;
+  long kestus2, kaugus2;
+
+  int s1Value = analogRead(A0); // S1
+  int s2Value = analogRead(A1); // S2
+
+  int averageValue = (s1Value + s2Value) / 2; // arvutab average
+
+
+  // Read left sensor
+  digitalWrite(6, LOW);
+  delayMicroseconds(2);
+  digitalWrite(6, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(6, LOW);
+  kestus1 = pulseIn(5, HIGH);
+  kaugus1 = (kestus1 * 0.034) / 2;
+  Serial.print("kaugus1 (left): ");
+  Serial.println(kaugus1);
+
+  // Read right sensor
+  digitalWrite(8, LOW);
+  delayMicroseconds(2);
+  digitalWrite(8, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(8, LOW);
+  kestus2 = pulseIn(7, HIGH);
+  kaugus2 = (kestus2 * 0.034) / 2;
+  Serial.print("kaugus2 (right): ");
+  Serial.println(kaugus2);
+
+  // Reversed turning logic
+  if (kaugus1 < 20 && kaugus2 >= 20) {
+    // Left side blocked → turn right
+    myservo.write(40);
+    Serial.println("Obstacle left → turning left 1111111111111");
+  } 
+  else if (kaugus2 < 20 && kaugus1 >= 20 ) {
+    // Right side blocked → turn left
+    myservo.write(140);
+    Serial.println("Obstacle right → turning right OR White 22222222222");
+  } 
+  else {
+    // No obstacles or both blocked → go straight
+    myservo.write(90);
+    Serial.println("No close obstacle → going straight 333333333333");
+  }
+
+
+
+
+  if (analogRead(A0) < blackThreshold) {
+  ringid++;
+  Serial.println("First BLACK detected → start turning");
+  myservo.write(140); // Start turning
+  //delay(100); // short delay to move off black
+  // Step 2: Wait until white is seen (i.e., no longer black)
+  while (analogRead(A0) < blackThreshold) {
+    delay(50); // still on black
+  }
+
+  // Step 3: Now turn until black is seen again
+  Serial.println("Now seeing white → keep turning until black again...");
+  while (analogRead(A0) > blackThreshold) {
+    myservo.write(140);
+    delay(100); // still white or color
+    
+  }
+
+  Serial.println("Second BLACK detected → stop turning");
+  myservo.write(90); // Stop turning
+}
+
+
+  Serial.println(ringid);
+
+  // Always drive forward slowly
+  digitalWrite(10, HIGH);     // Forward direction
+  analogWrite(11, 50);       // Slow speed (0–255)
+
+  delay(200); // Reduce delay for smoother movement
+
+  Serial.print("S1: ");
+  Serial.print(s1Value);
+  Serial.print("  S2: ");
+  Serial.print(s2Value);
+  Serial.print("  Average: ");
+  Serial.println(averageValue);
+  }
+
+
+
+  if (ringid == 16 && ringid > 16){
+    digitalWrite(10, LOW);
+    analogWrite(11, 255);
+  }
+
+}
+  
