@@ -1,8 +1,8 @@
 WRO robot  :D
 Helo pls dont juge its my first time making somthing in Github.
 
-
-20.042025
+newest programm WRO4 :_D
+.
 
 The newest programm is WRO3-silmad-07.0425 , WRO3-sõit_ja_silmad-07.04.25 and colorsens__sketch_apr27a_28_04_25 .
 Each programm has its explanations behind each line.
@@ -10,7 +10,7 @@ Newest picktures of the robot are under Photos-WRO-auto.zip (PS- new photos may 
 to the robot we have added two ultrasoniksensors, a powerbank(not in the photos), infrared sensor(colorsensor), exstantion blocs, we changed the 12V DC motor to a Motor with gearbox 3-6VDC 250mA 140rpm max 78mNm 48:1 , and in the front a ESP32 Camera module(for color seeing).
 
 
-24.03.2025
+.
 
 Our robot is 3D printed with open source design in Thingiverse. The robot uses Arduino UNO to control everything.
 A servo motor is used to control the front wheels in turning, we have picked it because its cheap and efficient to change for a new one if it breaks.
