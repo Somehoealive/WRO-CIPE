@@ -1,6 +1,13 @@
 WRO robot  :D
 Helo pls dont juge its my first time making somthing in Github.
 
+Here are some links to see how our robot is working:
+https://studio.youtube.com/video/u8VMIkdiYB0/edit 
+https://studio.youtube.com/video/M5Wp3u2OVbI/edit 
+https://studio.youtube.com/video/iKvaZiuN__Y/edit
+(ps, you can only see the videos though the links)
+
+
 newest programm WRO4 :_D
 .
 
