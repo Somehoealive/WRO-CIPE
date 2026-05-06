@@ -13,15 +13,7 @@ https://studio.youtube.com/video/M5Wp3u2OVbI/edit
 https://studio.youtube.com/video/iKvaZiuN__Y/edit
 (ps, you can only see the videos though the links)
 
-We have been working on getting the camera(ESP32 Camera module) to recognize colors and shapes for the second stage.
-The module for the camera a as created on tincercad and 3D printed out.
-3Dmodel: (https://www.tinkercad.com/things/bGn80zf6chB-powerful-kieran/edit?returnTo=%2Fthings%2FbGn80zf6chB-powerful-kieran&sharecode=TpZ5YribnzESrsAAGL8cDnb4Db5TR1IsGgDdK0VczvQ)
 
-Edge impulse was used to help create a programm for the camera to recognize shapes/objects that it sees. 
-On the pickture ... is seen the camera testing setup.
-
-
-....(I need to update the lover half)
 
 newest programm WRO4 :_D
 .
