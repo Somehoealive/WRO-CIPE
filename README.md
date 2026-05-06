@@ -1,3 +1,9 @@
+I rewrote everything on the 2026 one so thats the cleanest version there. As here everything is jumbled up.
+
+
+
+
+
 WRO robot  :D
 Hello,this project is a collaborative efort from me and OliverK (on Github) 
 
